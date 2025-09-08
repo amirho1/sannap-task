@@ -9,7 +9,7 @@ export default function BackButton(props: HTMLAttributes<HTMLButtonElement>) {
 
   return (
     <Button variant="link" onClick={handleOnBackClick} {...props}>
-      <ChevronRight className="w-6 h-6" size={24} color="white" />
+      <ChevronRight size={24} color="white" />
     </Button>
   );
 }
