@@ -1,0 +1,13 @@
+{
+  "appName": "سپر",
+  "register": "ثبت نام",
+  "notFound": "صفحه مورد نظر یافت نشد",
+  "backToHome": "بازگشت به صفحه اصلی",
+  "welcomeToRegisterAgentClick": "خوش آمدید! برای ثبت نام به عنوان نماینده، روی دکمه زیر کلیک کنید.",
+  "insertPhoneNumber": "شماره موبایل خود را وارد نمایید.",
+  "youReceiveOtp": "کد تایید برای شما ارسال خواهد شد.",
+  "continue": "ادامه",
+  "phoneNumberMustBe11Chars": "شماره موبایل باید 11 رقم باشد.",
+  "invalidPhoneNumber": "شماره موبایل نامعتبر است.",
+  "phoneNumber": "تلفن همراه"
+}
