@@ -1,7 +1,12 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import url("./assets/styles/fonts.css");
 
 @custom-variant dark (&:is(.dark *));
+
+* {
+  font-family: "SansSerif";
+}
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -14,8 +19,13 @@
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
+
+  /* Primary */
   --color-primary: var(--primary);
+  --color-primary-shadow-01: var(--primary-shadow-01);
   --color-primary-foreground: var(--primary-foreground);
+  --color-primary-disabled: var(--primary-disabled);
+
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
@@ -39,6 +49,9 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Black */
+  --color-black-90: var(--black-90);
 }
 
 :root {
@@ -49,8 +62,13 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+
+  /* Primary */
+  --primary: oklch(0.5212 0.0897 209.09);
+  --primary-shadow-01: oklch(0.6343 0.0981 206.49);
   --primary-foreground: oklch(0.985 0 0);
+  --primary-disabled: oklch(0.8575 0.024 206.61);
+
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
@@ -74,6 +92,9 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* Black */
+  --black-90: oklch(0.6534 0 0);
 }
 
 .dark {
