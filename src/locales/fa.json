@@ -9,5 +9,10 @@
   "continue": "ادامه",
   "phoneNumberMustBe11Chars": "شماره موبایل باید 11 رقم باشد.",
   "invalidPhoneNumber": "شماره موبایل نامعتبر است.",
-  "phoneNumber": "تلفن همراه"
+  "phoneNumber": "تلفن همراه",
+  "enterOTP": "کد تایید را وارد کنید",
+  "resendOTP": "ارسال مجدد کد",
+  "wrongOTP": "کد وارد شده صحیح نمی‌باشد.",
+  "processingError": "خطا در پردازش درخواست",
+  "networkError": "خطای شبکه"
 }
