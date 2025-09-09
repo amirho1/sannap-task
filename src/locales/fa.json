@@ -14,5 +14,11 @@
   "resendOTP": "ارسال مجدد کد",
   "wrongOTP": "کد وارد شده صحیح نمی‌باشد.",
   "processingError": "خطا در پردازش درخواست",
-  "networkError": "خطای شبکه"
+  "networkError": "خطای شبکه",
+  "firstnameIsRequired": "نام الزامی است.",
+  "lastnameIsRequired": "نام خانوادگی الزامی است.",
+  "name": "نام",
+  "lastname": "نام خانوادگی",
+  "enterName": "نام را وارد کنید",
+  "enterLastname": "نام خانوادگی را وارد کنید"
 }

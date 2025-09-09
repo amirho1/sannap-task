@@ -6,11 +6,18 @@ import { useNavigate } from "react-router";
 import OtpValidateForm from "./OtpValidateForm";
 import { axiosInstance } from "@/api";
 import { apiRoutes } from "@/lib/utils";
+import FullNameForm from "./FullNameForm";
 
 export default function Register() {
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(2);
   const [phone, setPhone] = useState("");
   const [datetime, setDatetime] = useState(0);
+  const [fullName, setFullName] = useState({ firstname: "", lastname: "" });
+
+  function handleFullNameChange(key: keyof typeof fullName, value: string) {
+    setFullName(prev => ({ ...prev, [key]: value }));
+  }
+
   const navigate = useNavigate();
 
   function onBackClick() {
@@ -37,6 +44,7 @@ export default function Register() {
       sendOTP={sendOTP}
       nextStep={handleNextStep}
     />,
+    <FullNameForm nextStep={handleNextStep} onChange={handleFullNameChange} fullName={fullName} />,
   ];
 
   function handleDateTime() {
