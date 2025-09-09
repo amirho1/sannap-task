@@ -1,5 +1,6 @@
 import { Outlet } from "react-router";
 import Header from "../Header";
+import { Toaster } from "../ui/sonner";
 
 export default function Layout() {
   return (
@@ -8,6 +9,7 @@ export default function Layout() {
       <main className="absolute top-18 w-full">
         <Outlet />
       </main>
+      <Toaster />
     </div>
   );
 }
