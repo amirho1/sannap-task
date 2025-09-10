@@ -7,9 +7,10 @@ import OtpValidateForm from "./OtpValidateForm";
 import { axiosInstance } from "@/api";
 import { apiRoutes } from "@/lib/utils";
 import FullNameForm from "./FullNameForm";
+import DetailsForm from "./DetailsForm";
 
 export default function Register() {
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(0);
   const [phone, setPhone] = useState("");
   const [datetime, setDatetime] = useState(0);
   const [fullName, setFullName] = useState({ firstname: "", lastname: "" });
@@ -45,6 +46,11 @@ export default function Register() {
       nextStep={handleNextStep}
     />,
     <FullNameForm nextStep={handleNextStep} onChange={handleFullNameChange} fullName={fullName} />,
+    <DetailsForm
+      first_name={fullName.firstname}
+      last_name={fullName.lastname}
+      phone_number={phone}
+    />,
   ];
 
   function handleDateTime() {
