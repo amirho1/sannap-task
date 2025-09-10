@@ -12,7 +12,7 @@ export interface ResponseT {
   response: null | any;
 }
 
-export interface Inputs<Name = string, Item> {
+export interface Inputs<Name = string, Item = unknown> {
   name: Name;
   label: string;
   placeholder: string;
