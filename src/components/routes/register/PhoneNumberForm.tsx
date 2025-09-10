@@ -74,6 +74,8 @@ export default function PhoneNumberForm({ sendOTP, value, onPhoneChange }: Phone
                 <FormItem>
                   <FormLabel>{translate("phoneNumber")}</FormLabel>
                   <PhoneNumberInput
+                    maxLength={11}
+                    prefix="98+"
                     data-error={!!formState.errors.phone}
                     {...field}
                     onChange={e => {

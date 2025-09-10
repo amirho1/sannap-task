@@ -1,13 +1,26 @@
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import { useState, type ChangeEvent } from "react";
+import { useState, type ChangeEvent, type ComponentProps } from "react";
 
-export default function PhoneNumberInput({ onChange, ...props }: React.ComponentProps<"input">) {
+interface PhoneNumberInputProps extends ComponentProps<"input"> {
+  prefix?: string;
+  maxLength: number;
+}
+
+export default function PhoneNumberInput(
+  { onChange, prefix, maxLength, ...props }: PhoneNumberInputProps = {
+    maxLength: 11,
+    prefix: "+98",
+  }
+) {
   const [value, setValue] = useState("");
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     const numberReg = /^[0-9\b]+$/;
-    if ((numberReg.test(e.target.value) && e.target.value.length <= 11) || e.target.value === "") {
+    if (
+      (numberReg.test(e.target.value) && e.target.value.length <= maxLength) ||
+      e.target.value === ""
+    ) {
       onChange?.(e);
       setValue(e.target.value);
     }
@@ -21,7 +34,7 @@ export default function PhoneNumberInput({ onChange, ...props }: React.Component
           "border-r-1"
         )}
       >
-        98+
+        {prefix}
       </div>
 
       <Input
