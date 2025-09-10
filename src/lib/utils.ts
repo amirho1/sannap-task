@@ -9,10 +9,17 @@ export function cn(...inputs: ClassValue[]) {
 export function translate(key: keyof typeof fa) {
   return fa[key] || key;
 }
+const signupBase = "/api/v2/app/DEY/agent/verification/signup";
 
 export const apiRoutes = {
-  createOTP: "/agent/verification/signup/create_otp/",
-  validateOTP: "/agent/verification/signup/validate_otp/",
+  createOTP: `${signupBase}/create_otp/`,
+  validateOTP: `${signupBase}/validate_otp/`,
+  states: `/base/provinces_wop/`,
+  cities: `/base/counties_wop/`,
+  insuranceBranch: "/api/v2/app/selection_item/insurance_branch/wop_list/",
+  checkAgencyCode: "/api/v2/app/DEY/agent/verification/signup/check_agency_code/",
+  signup: `${signupBase}/`,
+  status: "/api/v2/app/DEY/agent/app_user_status/",
 };
 
 export function debounce(func: (...args: any[]) => any, delay: number = 1000) {
