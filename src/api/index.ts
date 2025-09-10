@@ -13,7 +13,8 @@ axiosInstance.interceptors.response.use(
   response => {
     if (response.status >= 400) {
       const msg = response.data?.error_details?.fa_details ?? translate("processingError");
-      toast.error(msg);
+      if (response.data?.error_details?.code === "agent_code_unique") toast.warning(msg);
+      else toast.warning(msg);
     }
     return response;
   },
