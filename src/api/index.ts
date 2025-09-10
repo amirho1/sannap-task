@@ -9,12 +9,26 @@ export const axiosInstance = axios.create({
   validateStatus: () => true,
 });
 
+axiosInstance.interceptors.request.use(request => {
+  const accessToken = localStorage.getItem("accessToken");
+  if (accessToken) request.headers.Authorization = `jwt ${accessToken}`;
+
+  return request;
+});
+
 axiosInstance.interceptors.response.use(
   response => {
-    if (response.status >= 400) {
-      const msg = response.data?.error_details?.fa_details ?? translate("processingError");
-      if (response.data?.error_details?.code === "agent_code_unique") toast.warning(msg);
-      else toast.warning(msg);
+    switch (response.status) {
+      case 400: {
+        const msg = response.data?.error_details?.fa_details ?? translate("processingError");
+        if (response.data?.error_details?.code === "agent_code_unique") toast.warning(msg);
+        else toast.warning(msg);
+        break;
+      }
+      case 401: {
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
+      }
     }
     return response;
   },
