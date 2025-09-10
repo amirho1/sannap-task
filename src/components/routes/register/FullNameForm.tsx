@@ -13,7 +13,7 @@ import { useForm } from "react-hook-form";
 import z from "zod";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import type { ChangeEvent } from "react";
+import type { Inputs } from "@/types";
 
 const fullNameSchema = z.object({
   firstname: z.string().min(1, { message: translate("firstnameIsRequired") }),
@@ -24,13 +24,6 @@ interface FullNameFormProps {
   nextStep: () => void;
   onChange: (key: keyof FullNameFormProps["fullName"], value: string) => void;
   fullName: { firstname: string; lastname: string };
-}
-
-interface Inputs {
-  name: keyof FullNameFormProps["fullName"];
-  label: string;
-  placeholder: string;
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function FullNameForm({
@@ -46,7 +39,7 @@ export default function FullNameForm({
 
   const debounceHandleChange = debounce(handleChange);
 
-  const inputs: Inputs[] = [
+  const inputs: Inputs<keyof FullNameFormProps["fullName"]>[] = [
     {
       name: "firstname",
       label: translate("name"),
