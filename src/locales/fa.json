@@ -46,5 +46,7 @@
   "atLeast8": "حداقل ۸ شماره",
   "landlineIsRequired": "تلفن ثابت الزامیست",
   "nameIsRequiredForLegal": "هنگامی که نوع نماینده حقوقی است نام نماینده الزامیست",
-  "nameMustBeEmptyWhenReal": ""
+  "waitingStatusMessage": "درخواست ثبت نام شما در حال بررسی است، در صورت تأیید اطلاعات، اپلیکیشن مورد نظر فعال خواهدشد.",
+  "dearAgent": "نماینده محترم؛",
+  "loginWithAnotherAccount": "ورود با حساب کاربری دیگر"
 }
