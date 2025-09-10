@@ -24,9 +24,11 @@ import { BranchesCombobox } from "./BranchesComboBox";
 import { type DetailsFormProps } from "./detailsForm.d";
 import { useState } from "react";
 import { axiosInstance } from "@/api";
+import { useNavigate } from "react-router";
 
 export default function DetailsForm({ first_name, last_name, phone_number }: DetailsFormProps) {
   const [cityFullObj, setCityFullObj] = useState<CityOption | undefined>();
+  const navigate = useNavigate();
 
   const form = useForm({
     resolver: zodResolver(detailsSchema),
@@ -88,6 +90,7 @@ export default function DetailsForm({ first_name, last_name, phone_number }: Det
     if (res.data.is_success) {
       localStorage.setItem("refreshToken", res.data.response.refresh);
       localStorage.setItem("accessToken", res.data.response.access);
+      navigate("/status-check");
     }
   }
 
