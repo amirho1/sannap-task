@@ -11,7 +11,6 @@ import { apiRoutes, translate } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import z from "zod";
-import { Button } from "@/components/ui/button";
 import AgencyCodeInput from "./AgencyCodeInput";
 import DynamicSelect from "@/components/DynamicSelect";
 import type { Branch, CityOption, ProvinceOption } from "@/types";
@@ -22,13 +21,15 @@ import { Input } from "@/components/ui/input";
 import { detailsSchema } from "./schema";
 import { BranchesCombobox } from "./BranchesComboBox";
 import { type DetailsFormProps } from "./detailsForm.d";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { axiosInstance } from "@/api";
 import { useNavigate } from "react-router";
+import LoadingBtn from "@/components/LoadingBtn";
 
 export default function DetailsForm({ first_name, last_name, phone_number }: DetailsFormProps) {
   const [cityFullObj, setCityFullObj] = useState<CityOption | undefined>();
   const navigate = useNavigate();
+  const [isPending, startTransition] = useTransition();
 
   const form = useForm({
     resolver: zodResolver(detailsSchema),
@@ -71,7 +72,7 @@ export default function DetailsForm({ first_name, last_name, phone_number }: Det
     form.setValue("insuranceBranch", value);
   }
 
-  async function handleSubmit(data: z.infer<typeof detailsSchema>) {
+  function handleSubmit(data: z.infer<typeof detailsSchema>) {
     const backData = {
       agent_code: data.agentCode,
       first_name,
@@ -85,13 +86,16 @@ export default function DetailsForm({ first_name, last_name, phone_number }: Det
       county: cityFullObj?.id,
       agency_type: data.agentType,
     };
-    const res = await axiosInstance.post(apiRoutes.signup, backData);
 
-    if (res.data.is_success) {
-      localStorage.setItem("refreshToken", res.data.response.refresh);
-      localStorage.setItem("accessToken", res.data.response.access);
-      navigate("/status-check");
-    }
+    startTransition(async () => {
+      const res = await axiosInstance.post(apiRoutes.signup, backData);
+
+      if (res.data.is_success) {
+        localStorage.setItem("refreshToken", res.data.response.refresh);
+        localStorage.setItem("accessToken", res.data.response.access);
+        navigate("/status-check");
+      }
+    });
   }
 
   return (
@@ -239,9 +243,9 @@ export default function DetailsForm({ first_name, last_name, phone_number }: Det
           </CardContent>
 
           <CardFooter className="mt-6 flex flex-col">
-            <Button className="w-full" type="submit">
+            <LoadingBtn loading={isPending} className="w-full" type="submit">
               {translate("continue")}
-            </Button>
+            </LoadingBtn>
           </CardFooter>
         </form>
       </Form>
